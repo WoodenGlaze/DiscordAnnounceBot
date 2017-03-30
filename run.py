@@ -48,7 +48,7 @@ async def announce():
 async def message(ctx, annmessage:str, title):
      return await client.send_message(discord.Object(295680694171074560),annmessage)
      log.debug(annmessage + ' was written by ' + str(message.author))
-     print('{} sent an announcement to Fruit Butts'.format(message.author))
+     print('{} sent an announcement to Test Server'.format(message.author))
 
      anmessage = discord.Embed(title='{}'.format(title), colour=0xffff99)
 
