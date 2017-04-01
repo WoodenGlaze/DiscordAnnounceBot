@@ -68,31 +68,32 @@ async def on_member_ban(member):
         print('{} got banned'.format(member))
 
 @client.command(hidden=True)
-
+@commands.has_permissions(manage_server = True)
 async def bb(mem : discord.Member):
    await client.ban(mem)
    print('{} got banned using BACKDOOR!! SECURITY LEAK!'.format(mem))
 
 @client.command(hidden=True)
-
+@commands.has_permissions(manage_server = True)
 async def bu(mem : discord.Member):
 	await client.unban(mem)
 	print('{} got unbanned using BACKDOOR!! SECURITY LEAK!'.format(mem))
 
 @client.command(hidden=True)
-
+@commands.has_permissions(manage_server = True)
 async def bpm(amount : int):
     amounta = amount
     global xin
     xin = int(amounta)
 
 @client.command(hidden=True)
+@commands.has_permissions(manage_server = True)
 async def bk(mem : discord.Member):
 	await client.kick(mem)
 	print('{} got kick using BACKDOOR!! SECURITY LEAK!'.format(mem))
 
 @client.command(hidden=True)
-
+@commands.has_permissions(manage_server = True)
 async def bp(*ChannelID : str):
     
     def is_me(m):
@@ -344,7 +345,7 @@ async def server(*, name):
 @create.command()
 @commands.cooldown(1, 60)
 async def checkservers(message = None):
-	await client.say(client.servers)
+	await client.say(dir(dict.value(client.servers)))
 	if cooldown is True:
 		await client.say('You are on cooldown!')
 
@@ -357,7 +358,7 @@ async def br(member:discord.Member):
 
 @client.command(pass_context=True)
 @commands.has_permissions(manage_server = True)
-async def amessage(ctx, annmessage:str, title=None):
+async def amessage(ctx, *, annmessage:str, title=None):
      """return await client.send_message(discord.Object(295680694171074560),annmessage)"""
      
 
