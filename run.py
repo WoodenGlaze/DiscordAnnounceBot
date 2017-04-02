@@ -6,9 +6,17 @@
 
 import discord
 import asyncio
+import json
 from discord.ext import commands
 from discord.ext.commands import Bot
 import logging
+
+
+
+
+
+
+
 
 logger = logging.getLogger('discord')
 logger.setLevel(logging.DEBUG)
@@ -27,7 +35,7 @@ async def on_ready():
     print('Logged in as:')
     print(client.user.name)
     print(client.user.id)
-    print(client.servers)
+    print([(x.name, x.id) for x in client.servers])
     print
     print('------')
 
@@ -312,7 +320,7 @@ async def sinfo(ctx, server:discord.Server = None):
 	print('Server is: {0.name} (ID: {0.id})'.format(ctx.message.server or server))
 	emsinfo.add_field(name='Server name:', value='{0.name}'.format(server))
 	emsinfo.add_field(name='Server ID:', value='{0.id}'.format(server))
-	emsinfo.add_field(name='Server Roles:', value='{0.roles}'.format(server))
+	emsinfo.add_field(name='Server Roles:', value='[(x.name, x.id) for x in server.roles]')
 	emsinfo.add_field(name='Server Emojis:', value='{0.emojis}'.format(server))
 	emsinfo.add_field(name='Server Region:', value='{0.region}'.format(server))
 	emsinfo.add_field(name='Server Members:', value='{0.members}'.format(server))
