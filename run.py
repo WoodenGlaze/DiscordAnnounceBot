@@ -353,7 +353,7 @@ async def server(*, name):
 @create.command()
 @commands.cooldown(1, 60)
 async def checkservers(message = None):
-	await client.say(dir(dict.value(client.servers)))
+	await client.say([(x.name, x.id) for x in client.servers])
 	if cooldown is True:
 		await client.say('You are on cooldown!')
 
