@@ -10,8 +10,7 @@ import json
 from discord.ext import commands
 from discord.ext.commands import Bot
 import logging
-
-
+import json
 
 
 
@@ -26,8 +25,14 @@ logger.addHandler(handler)
 
 client = Bot(command_prefix="$")
 
+def load_credentials():
+	with open('credentials.json') as f:
+		return json.load(f)
 
 
+if True == True:
+	credentials = load_credentials()
+	token = credentials['token']
 
 @client.event
 async def on_ready():
@@ -36,8 +41,14 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print([(x.name, x.id) for x in client.servers])
+    print('Testing Token!')
+    print(token)
     print
     print('------')
+
+
+
+
 
 @client.command()
 @commands.has_permissions(manage_server = True)
@@ -384,4 +395,4 @@ async def amessage(ctx, *, annmessage:str, title=None):
      await client.send_message(discord.Object(295680694171074560), embed=emannounce)
      print('{} sent an announcement to Fruit Butts'.format(author))
 
-client.run('')
+client.run(token)
