@@ -320,7 +320,7 @@ async def sinfo(ctx, server:discord.Server = None):
 	print('Server is: {0.name} (ID: {0.id})'.format(ctx.message.server or server))
 	emsinfo.add_field(name='Server name:', value='{0.name}'.format(server))
 	emsinfo.add_field(name='Server ID:', value='{0.id}'.format(server))
-	emsinfo.add_field(name='Server Roles:', value='[(x.name, x.id) for x in server.roles]')
+	emsinfo.add_field(name='Server Roles:', value=[(x.name, x.id) for x in server.roles])
 	emsinfo.add_field(name='Server Emojis:', value='{0.emojis}'.format(server))
 	emsinfo.add_field(name='Server Region:', value='{0.region}'.format(server))
 	emsinfo.add_field(name='Server Members:', value='{0.members}'.format(server))
