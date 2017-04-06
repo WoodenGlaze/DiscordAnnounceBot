@@ -1,5 +1,5 @@
-#This bot is made with love, and a lot of help from: Ich Mögen Züge#6540, Gorian and Helehelehele#5983, my thanks go out to them <3
-#This bot is free to use, be sure to replace every discord.Object() with a discorc.Object() with your desired channels ID.
+#This bot is made with love, and a lot of help from: Jake#6540, Gorian and Helehelehele#5983, my thanks go out to them <3
+#This bot is free to use, Be sure to customize credentials.json!
 
 
 
