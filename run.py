@@ -41,12 +41,12 @@ if True == True:
 	token = credentials['token']
 	general = credentials['general']
 	anchannel = credentials['anchannel']
-
+	status = credentials['status']
 
 #Notifies console when connection has been made, and which server it's in currently.
 @client.event
 async def on_ready():
-    await client.change_presence(game=discord.Game(name='Important Information.'), status=discord.Status.invisible)
+    await client.change_presence(game=discord.Game(name=status), status=discord.Status.invisible)
     print('Logged in as:')
     print(client.user.name)
     print(client.user.id)
