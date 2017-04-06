@@ -3,44 +3,54 @@
 
 
 
-
+#Imports and such
 import discord
 import asyncio
 import json
+import logging
 from discord.ext import commands
 from discord.ext.commands import Bot
-import logging
-import json
 
 
 
 
 
 
+
+#logger settings
 logger = logging.getLogger('discord')
 logger.setLevel(logging.DEBUG)
 handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
 handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 logger.addHandler(handler)
 
+
+#define client and prefix
 client = Bot(command_prefix="$")
 
+
+
+#define credentials file + open it.
 def load_credentials():
 	with open('credentials.json') as f:
 		return json.load(f)
 
-
+#Gets info from credentials.json
 if True == True:
 	credentials = load_credentials()
 	token = credentials['token']
+	general = credentials['general']
+	anchannel = credentials['anchannel']
 
+
+#Notifies console when connection has been made, and which server it's in currently.
 @client.event
 async def on_ready():
     await client.change_presence(game=discord.Game(name='Important Information.'), status=discord.Status.invisible)
     print('Logged in as:')
     print(client.user.name)
     print(client.user.id)
-    print([(x.name, x.id) for x in client.servers])
+    print([(x.name, x.id, x.owner) for x in client.servers])
     print('Testing Token!')
     print(token)
     print
@@ -65,7 +75,7 @@ async def announce():
 @client.command(pass_context=True)
 @commands.has_permissions(manage_server = True)
 async def message(ctx, annmessage:str, title):
-     return await client.send_message(discord.Object(295680694171074560),annmessage)
+     return await client.send_message(discord.Object(anchannel),annmessage)
      log.debug(annmessage + ' was written by ' + str(message.author))
      print('{} sent an announcement to Test Server'.format(message.author))
 
@@ -83,7 +93,7 @@ async def message(ctx, annmessage:str, title):
 @client.event
 async def on_member_ban(member):
 
-        await client.send_message(discord.Object(id='295676177803247619'), '{} got **banned**'.format(member))
+        await client.send_message(discord.Object(general), '{} got **banned**'.format(member))
         print('{} got banned'.format(member))
 
 @client.command(hidden=True)
@@ -392,7 +402,7 @@ async def amessage(ctx, *, annmessage:str, title=None):
      emannounce.add_field(name='Important Announcement!', value='{}'.format(annmessage))
 
      await client.say(embed=emannounce)
-     await client.send_message(discord.Object(295680694171074560), embed=emannounce)
+     await client.send_message(discord.Object(anchannel), embed=emannounce)
      print('{} sent an announcement to Fruit Butts'.format(author))
 
 client.run(token)
